@@ -21,8 +21,6 @@ module.exports = {
     // avg_temperature_in_celsius
 };
 
-// 32°F, 25°C, 70°F, 18°C, 80°F, 15°C, 72°F, 28°C, 68°F, 20°C, 75°F, 23°C, 82°F, 30°C, 65°F, 22°C, 77°F, 26°C, 78°F, 24°C, 73°F, 21°C, 79°F, 27°C, 71°F, 19°C, 74°F, 17°C, 76°F, 29°C
-
 const day1TempF = 32
 const day2TempC = (25 * 9/5) + 32
 const day3TempF = 70
@@ -54,3 +52,35 @@ const day28TempC = (17 * 9/5) + 32
 const day29TempF = 76
 const day30TempC = (29 * 9/5) + 32
 
+const fahrenheitTemps = [day1TempF, day3TempF, day5TempF, day7TempF, day9TempF,
+    day11TempF, day13TempF, day15TempF, day17TempF, day19TempF,
+    day21TempF, day23TempF, day25TempF, day27TempF, day29TempF]
+
+const celciusTemps = [day2TempC, day4TempC, day6TempC, day8TempC, day10TempC,
+    day12TempC, day14TempC, day16TempC, day18TempC, day20TempC,
+    day22TempC, day24TempC, day26TempC, day28TempC, day30TempC]
+
+let tot_temperature_in_fahrenheit = fahrenheitTemps.reduce((acc,temp)=>{
+    acc += temp
+    return acc
+},0)
+
+console.log("tot_temperature_in_fahrenehit:",tot_temperature_in_fahrenheit)
+
+let tot_temperature_in_celsius = celciusTemps.reduce((acc,temp)=>{
+    acc += temp
+    return acc
+},0)
+
+console.log("tot_temperature_in_celsius",tot_temperature_in_celsius)
+function averageTemperature(total_temp,num_temps){
+    return total_temp/num_temps
+}
+
+let avg_temperature_in_fahrenheit = averageTemperature(tot_temperature_in_fahrenheit,fahrenheitTemps.length)
+
+console.log(avg_temperature_in_fahrenheit)
+
+let avg_temperature_in_celsius = averageTemperature(tot_temperature_in_celsius,celciusTemps.length)
+
+console.log(avg_temperature_in_celsius)
