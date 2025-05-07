@@ -17,58 +17,62 @@
 
 
 const day1TempF = 32
-const day2TempC = (25 * 9/5) + 32
+const day2TempC = 25
 const day3TempF = 70
-const day4TempC = (18 * 9/5) + 32
+const day4TempC = 18
 const day5TempF = 80
-const day6TempC = (15 * 9/5) + 32
+const day6TempC = 15
 const day7TempF = 72
-const day8TempC = (28 * 9/5) + 32
+const day8TempC = 28
 const day9TempF = 68
-const day10TempC = (20 * 9/5) + 32
+const day10TempC = 20
 const day11TempF = 75
-const day12TempC = (23 * 9/5) + 32
+const day12TempC = 23 
 const day13TempF = 82
-const day14TempC = (30 * 9/5) + 32
+const day14TempC = 30 
 const day15TempF = 65
-const day16TempC = (22 * 9/5) + 32
+const day16TempC = 22 
 const day17TempF = 77
-const day18TempC = (26 * 9/5) + 32
+const day18TempC = 26 
 const day19TempF = 78
-const day20TempC = (24 * 9/5) + 32
+const day20TempC = 24 
 const day21TempF = 73
-const day22TempC = (21 * 9/5) + 32
+const day22TempC = 21 
 const day23TempF = 79
-const day24TempC = (27 * 9/5) + 32
+const day24TempC = 27 
 const day25TempF = 71
-const day26TempC = (19 * 9/5) + 32
+const day26TempC = 19 
 const day27TempF = 74
-const day28TempC = (17 * 9/5) + 32
+const day28TempC = 17 
 const day29TempF = 76
-const day30TempC = (29 * 9/5) + 32
+const day30TempC = 29 
 
-const fahrenheitTemps = [day1TempF, day3TempF, day5TempF, day7TempF, day9TempF,
+let fahrenheitTemps = [day1TempF, day3TempF, day5TempF, day7TempF, day9TempF,
     day11TempF, day13TempF, day15TempF, day17TempF, day19TempF,
     day21TempF, day23TempF, day25TempF, day27TempF, day29TempF]
 
-const celciusTemps = [day2TempC, day4TempC, day6TempC, day8TempC, day10TempC,
+let celciusTemps = [day2TempC, day4TempC, day6TempC, day8TempC, day10TempC,
     day12TempC, day14TempC, day16TempC, day18TempC, day20TempC,
     day22TempC, day24TempC, day26TempC, day28TempC, day30TempC]
 
-let total_fahrenheit = fahrenheitTemps.reduce((acc,temp)=>{
+let celciusToF = celciusTemps.map((temp)=> {
+    return (temp * 9/5) + 32
+})
+
+let totalFahrenheit = fahrenheitTemps.reduce((acc,temp)=>{
     acc += temp * 1.0
     return acc
 },0.0)
 
-let total_celcius = celciusTemps.reduce((acc,temp)=>{
-    acc += temp * 1.0
+let totalCelciusToF = celciusToF.reduce((acc,temp)=>{
+    acc += temp
     return acc
 },0.0)
 
-let tot_temperature_in_fahrenheit = total_fahrenheit + total_celcius
-console.log("tot_temperature_in_fahrenehit:",tot_temperature_in_fahrenheit)
+let tot_temperature_in_fahrenheit = totalFahrenheit + totalCelciusToF
+let tot_temperature_in_celsius = (tot_temperature_in_fahrenheit - 32) * 5 / 9
 
-//console.log("tot_temperature_in_celsius",tot_temperature_in_celsius)
+
 function averageTemperature(total_temp,num_temps){
     return total_temp/num_temps
 }
@@ -77,13 +81,13 @@ let avg_temperature_in_fahrenheit = averageTemperature(tot_temperature_in_fahren
 
 console.log(avg_temperature_in_fahrenheit)
 
-let avg_temperature_in_celsius = averageTemperature(total_celcius,celciusTemps.length)
+let avg_temperature_in_celsius = averageTemperature(tot_temperature_in_celsius,(fahrenheitTemps.length + celciusTemps.length))
 
 console.log(avg_temperature_in_celsius)
 
 module.exports = {
     tot_temperature_in_fahrenheit,
-    // tot_temperature_in_celsius,
+    tot_temperature_in_celsius,
     avg_temperature_in_fahrenheit,
-    // avg_temperature_in_celsius
+    avg_temperature_in_celsius
 };
