@@ -14,12 +14,7 @@
 //! After creating the four variables mentioned above, uncomment the following lines
 //* This way you can export them to the test file, this is essential for the tests to work
 
-module.exports = {
-    // tot_temperature_in_fahrenheit,
-    // tot_temperature_in_celsius,
-    // avg_temperature_in_fahrenheit,
-    // avg_temperature_in_celsius
-};
+
 
 const day1TempF = 32
 const day2TempC = (25 * 9/5) + 32
@@ -60,27 +55,35 @@ const celciusTemps = [day2TempC, day4TempC, day6TempC, day8TempC, day10TempC,
     day12TempC, day14TempC, day16TempC, day18TempC, day20TempC,
     day22TempC, day24TempC, day26TempC, day28TempC, day30TempC]
 
-let tot_temperature_in_fahrenheit = fahrenheitTemps.reduce((acc,temp)=>{
-    acc += temp
+let total_fahrenheit = fahrenheitTemps.reduce((acc,temp)=>{
+    acc += temp * 1.0
     return acc
-},0)
+},0.0)
 
+let total_celcius = celciusTemps.reduce((acc,temp)=>{
+    acc += temp * 1.0
+    return acc
+},0.0)
+
+let tot_temperature_in_fahrenheit = total_fahrenheit + total_celcius
 console.log("tot_temperature_in_fahrenehit:",tot_temperature_in_fahrenheit)
 
-let tot_temperature_in_celsius = celciusTemps.reduce((acc,temp)=>{
-    acc += temp
-    return acc
-},0)
-
-console.log("tot_temperature_in_celsius",tot_temperature_in_celsius)
+//console.log("tot_temperature_in_celsius",tot_temperature_in_celsius)
 function averageTemperature(total_temp,num_temps){
     return total_temp/num_temps
 }
 
-let avg_temperature_in_fahrenheit = averageTemperature(tot_temperature_in_fahrenheit,fahrenheitTemps.length)
+let avg_temperature_in_fahrenheit = averageTemperature(tot_temperature_in_fahrenheit,(fahrenheitTemps.length + celciusTemps.length))
 
 console.log(avg_temperature_in_fahrenheit)
 
-let avg_temperature_in_celsius = averageTemperature(tot_temperature_in_celsius,celciusTemps.length)
+let avg_temperature_in_celsius = averageTemperature(total_celcius,celciusTemps.length)
 
 console.log(avg_temperature_in_celsius)
+
+module.exports = {
+    tot_temperature_in_fahrenheit,
+    // tot_temperature_in_celsius,
+    avg_temperature_in_fahrenheit,
+    // avg_temperature_in_celsius
+};
